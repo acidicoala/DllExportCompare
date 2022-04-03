@@ -53,14 +53,22 @@ int wmain(const int argc, const wchar_t* argv[]) {
         }
     }
 
-    logger->info("DLL Exports present only in the first DLL ({})", dll_path_1.string());
-    for (const auto& function: exports_only_in_1) {
-        logger->info("  * {}", function);
+    if (exports_only_in_1.empty()) {
+        logger->info("No unique exports are present in the first DLL ({})", dll_path_1.string());
+    } else {
+        logger->info("DLL Exports present only in the first DLL ({})", dll_path_1.string());
+        for (const auto& function: exports_only_in_1) {
+            logger->info("  * {}", function);
+        }
     }
 
-    logger->info("DLL Exports present only in the second DLL ({})", dll_path_2.string());
-    for (const auto& function: exports_only_in_2) {
-        logger->info("  * {}", function);
+    if (exports_only_in_2.empty()) {
+        logger->info("No unique exports are present in the second DLL ({})", dll_path_2.string());
+    } else {
+        logger->info("DLL Exports present only in the second DLL ({})", dll_path_2.string());
+        for (const auto& function: exports_only_in_2) {
+            logger->info("  * {}", function);
+        }
     }
 
     return 0;
